@@ -4,57 +4,62 @@ public class Command {
 	private Cmd cmd;
 
 	//Keyboard Listener
-	private long keyCode; // KEY LISTENER
+	private int keyCode; // KEY LISTENER
 	
 	//Scroll Listener
-	private long rotate;
+	private int rotate;
 	
 	//Mouse Listener
 	private int button;
-	private double x;
-	private double y;
+	private int x;
+	private int y;
+	
 	
 	//Wait
-	private long time; // WAIT
+	private int time; // WAIT
 
 	public Command(Cmd cmd) {
 		this.cmd = cmd;
 	}
 	
-	public long getRotate() {
+	public Cmd getCmd() {
+		return cmd;
+	}
+	
+	public int getRotate() {
 		return rotate;
 	}
-	public void setRotate(long rotate) {
+	public void setRotate(int rotate) {
 		this.rotate = rotate;
 	}
-	public long getTime() {
+	public int getTime() {
 		return time;
 	}
-	public void setTime(long time) {
+	public void setTime(int time) {
 		this.time = time;
 	}
 
-	public long getKeyCode() {
+	public int getKeyCode() {
 		return keyCode;
 	}
 
-	public void setKeyCode(long keyCode) {
+	public void setKeyCode(int keyCode) {
 		this.keyCode = keyCode;
 	}
 
-	public double getX() {
+	public int getX() {
 		return x;
 	}
 
-	public void setX(double x) {
+	public void setX(int x) {
 		this.x = x;
 	}
 
-	public double getY() {
+	public int getY() {
 		return y;
 	}
 
-	public void setY(double y) {
+	public void setY(int y) {
 		this.y = y;
 	}
 

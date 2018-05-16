@@ -16,6 +16,7 @@ import java.util.ResourceBundle;
 
 import javax.swing.SwingUtilities;
 
+import core.Player;
 import core.Recorder;
 
 public class MainController implements Initializable {
@@ -48,7 +49,7 @@ public class MainController implements Initializable {
 	
 	private void handleRecord(ActionEvent event) {
 		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Save files for recording");
+		fileChooser.setTitle("Save file for recording");
 		
 		//Set extension filter
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Script files (*.script)", "*.script");
@@ -58,8 +59,8 @@ public class MainController implements Initializable {
 		if (file == null) {
 			System.out.println("[WARN] File's not saved.");
 		} else {
-			MainUI.iconified(true);
 			try {
+				MainUI.iconified(true);
 				SwingUtilities.invokeAndWait(new Recorder(file));
 				System.out.println("Recorder has benn finish.");
 				MainUI.iconified(false);
@@ -71,7 +72,28 @@ public class MainController implements Initializable {
 	}
 
 	private void handlePlay(ActionEvent event) {
-		System.out.println("[INFO] Play button selected.");
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Open file for playing.");
+		
+		//Set extension filter
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Script files (*.script)", "*.script");
+        fileChooser.getExtensionFilters().add(extFilter);
+		File file = fileChooser.showOpenDialog(MainUI.primaryStage);
+		
+		if(file == null) {
+			System.out.println("[WARN] File's not opened.");
+		} else {
+			try {
+				int loop = 1;
+				MainUI.iconified(true);
+				SwingUtilities.invokeAndWait(new Player(file, loop));
+				System.out.println("Player has benn finish.");
+				MainUI.iconified(false);
+			} catch (InvocationTargetException | InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 	private void handleExit(ActionEvent event) {
