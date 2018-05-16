@@ -2,7 +2,7 @@ package model;
 
 public enum SceneUI {
 	MAIN("/mainUI.fxml"), 
-	RECORD("/record.fxml"), 
+	Usage("/usage.fxml"), 
 	PLAY("/play.fxml");
 	
 	final private String filename;
