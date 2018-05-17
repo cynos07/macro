@@ -1,5 +1,6 @@
 package core.listener;
 
+import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 
 import org.jnativehook.mouse.NativeMouseEvent;
@@ -20,7 +21,7 @@ public class MouseListener extends SwingMouseAdapter{
 	@Override
 	public void mousePressed(MouseEvent mouseEvent) {
 		Command command = new Command(Cmd.MOUSE_PRESS);
-		command.setButton(mouseEvent.getButton());
+		command.setButton(InputEvent.getMaskForButton(mouseEvent.getButton()));
 		
 		Recorder.write(command);
 	}
@@ -28,9 +29,8 @@ public class MouseListener extends SwingMouseAdapter{
 	@Override
 	public void mouseReleased(MouseEvent mouseEvent) {
 		Command command = new Command(Cmd.MOUSE_RELEASE);
-		command.setButton(mouseEvent.getButton());
+		command.setButton(InputEvent.getMaskForButton(mouseEvent.getButton()));
 		
-		System.out.println("mouse Released!");
 		Recorder.write(command);
 	}
 }

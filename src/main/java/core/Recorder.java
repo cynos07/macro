@@ -16,7 +16,7 @@ import model.Cmd;
 import model.Command;
 
 public class Recorder implements Runnable{
-	private static boolean run = true;
+	private static boolean run = false;
 	
 	public static final int convertRate = 1000000;
 	private static File file;
@@ -37,6 +37,7 @@ public class Recorder implements Runnable{
 	
 	@Override
 	public void run() {
+		run = true;
 		// TODO Auto-generated method stub
 		try {
         	out = new BufferedWriter(new FileWriter(file));
@@ -118,4 +119,7 @@ public class Recorder implements Runnable{
 		}
 	}
 
+	public static boolean isRun() {
+		return run;
+	}
 }

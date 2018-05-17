@@ -84,7 +84,7 @@ public class MainController implements Initializable {
 			System.out.println("[WARN] File's not opened.");
 		} else {
 			try {
-				int loop = 1;
+				int loop = 10;
 				MainUI.iconified(true);
 				SwingUtilities.invokeAndWait(new Player(file, loop));
 				System.out.println("Player has benn finish.");
