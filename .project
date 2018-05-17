@@ -20,10 +20,4 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.buildship.core.gradleprojectnature</nature>
 	</natures>
-	<variableList>
-		<variable>
-			<name>copy_PARENT</name>
-			<value>$%7BPARENT-4-PROJECT_LOC%7D/Desktop/project-in-korea</value>
-		</variable>
-	</variableList>
 </projectDescription>
