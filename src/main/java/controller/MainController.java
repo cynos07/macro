@@ -76,8 +76,4 @@ public class MainController implements Initializable {
 		}
 	}
 
-	private void handleExit(ActionEvent event) {
-		System.exit(1);
-	}
-
 }
