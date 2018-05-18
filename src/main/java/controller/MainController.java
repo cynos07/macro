@@ -35,14 +35,12 @@ public class MainController implements Initializable {
 		usageMenu.setOnAction(event -> handleUsage(event));
 		recordBtn.setOnAction(event -> handleRecord(event));
 		playBtn.setOnAction(event -> handlePlay(event));
-//		exitBtn.setOnAction(event -> handleExit(event));
 	}
 	
 	private void handleUsage(ActionEvent event) {
 		try {
 			MainUI.popup("Usage", SceneUI.Usage);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -65,34 +63,16 @@ public class MainController implements Initializable {
 				System.out.println("Recorder has benn finish.");
 				MainUI.iconified(false);
 			} catch (InvocationTargetException | InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 	}
 
 	private void handlePlay(ActionEvent event) {
-		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Open file for playing.");
-		
-		//Set extension filter
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Script files (*.script)", "*.script");
-        fileChooser.getExtensionFilters().add(extFilter);
-		File file = fileChooser.showOpenDialog(MainUI.primaryStage);
-		
-		if(file == null) {
-			System.out.println("[WARN] File's not opened.");
-		} else {
-			try {
-				int loop = 10;
-				MainUI.iconified(true);
-				SwingUtilities.invokeAndWait(new Player(file, loop));
-				System.out.println("Player has benn finish.");
-				MainUI.iconified(false);
-			} catch (InvocationTargetException | InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		try {
+			MainUI.popup("Before play", SceneUI.PREPARSE_PLAY);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

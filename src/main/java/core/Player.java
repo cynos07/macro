@@ -23,13 +23,15 @@ import model.Command;
 public class Player implements Runnable {
 	private File file;
 	private int loop;
+	private int interval;
 	
 	private static boolean run = false;
 	private static KeyListener keyListener;
 
-	public Player(File file, int loop) {
+	public Player(File file, int loop, int interval) {
 		this.file = file;
 		this.loop = loop;
+		this.interval = interval;
 	}
 
 	@Override
@@ -86,6 +88,7 @@ public class Player implements Runnable {
 					input = reader.readLine();
 				}
 				reader.close();
+				robot.delay(interval);
 			}
 		} catch (AWTException e1) {
 			// TODO Auto-generated catch block

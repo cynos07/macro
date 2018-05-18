@@ -3,9 +3,11 @@ package view;
 import java.io.File;
 
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -44,8 +46,10 @@ public class MainUI extends Application {
 	}
 
 	public static void iconified(boolean isIconified) {
-		primaryStage.setIconified(isIconified);
-		System.out.println("iconified has chagned to " + isIconified);
+		for(Stage stage : com.sun.javafx.stage.StageHelper.getStages()) {
+			System.out.println("stage.. changed to " + isIconified);
+			stage.setIconified(isIconified);
+		}
 	}
 
 	public static void popup(String title, SceneUI scene) throws Exception {
