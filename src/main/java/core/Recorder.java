@@ -4,6 +4,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
@@ -43,6 +45,12 @@ public class Recorder implements Runnable{
         	out = new BufferedWriter(new FileWriter(file));
     		
 			GlobalScreen.registerNativeHook();
+			// Get the logger for "org.jnativehook" and set the level to off.
+			Logger logger = Logger.getLogger(GlobalScreen.class.getPackage().getName());
+			logger.setLevel(Level.OFF);
+
+			// Don't forget to disable the parent handlers.
+			logger.setUseParentHandlers(false);
 
 			keyListener = new KeyListener();
 			mouseListener = new MouseListener();
@@ -99,8 +107,6 @@ public class Recorder implements Runnable{
         long currentTime = System.currentTimeMillis();
         long timeMs = Math.abs(currentTime-prevTime);
         prevTime = currentTime;
-        System.out.println("long timeMs: " + timeMs);
-        System.out.println("int timeMs: " + (int)timeMs);
         return (int) timeMs;
 	}
 

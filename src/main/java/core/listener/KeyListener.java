@@ -13,6 +13,7 @@ public class KeyListener extends SwingKeyAdapter{
 	
 	@Override
 	public void keyPressed(KeyEvent keyEvent) {
+		System.out.println("Press: " + keyEvent.getKeyText(keyEvent.getKeyCode()));
 		int keyCode = keyEvent.getKeyCode();
 		if(keyCode == KeyEvent.VK_F8) {
 			if(Recorder.isRun())
@@ -30,6 +31,7 @@ public class KeyListener extends SwingKeyAdapter{
 
 	@Override
 	public void keyReleased(KeyEvent keyEvent) {
+		System.out.println("Release: " + keyEvent.getKeyText(keyEvent.getKeyCode()));
 		if(Recorder.isRun()) {
 			Command command = new Command(Cmd.KEY_RELEASE);
 			command.setKeyCode(keyEvent.getKeyCode());
