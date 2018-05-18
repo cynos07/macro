@@ -18,7 +18,7 @@ import model.Cmd;
 import model.Command;
 
 public class Recorder implements Runnable{
-	private static boolean run = false;
+	private volatile static boolean run = false;
 	
 	public static final int convertRate = 1000000;
 	private static File file;
@@ -71,12 +71,6 @@ public class Recorder implements Runnable{
 		}
 		
 		while(run) {
-			try {
-				Thread.sleep(10);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
 		System.out.println("run finished.");
 	}

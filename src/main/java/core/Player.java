@@ -27,7 +27,7 @@ public class Player implements Runnable {
 	private int loop;
 	private int interval;
 
-	private static boolean run = false;
+	private volatile static boolean run = false;
 	private static KeyListener keyListener;
 
 	public Player(File file, int loop, int interval) {
@@ -74,9 +74,11 @@ public class Player implements Runnable {
 						robot.mouseMove(command.getX(), command.getY());
 						break;
 					case MOUSE_PRESS:
+//						robot.mouseMove(command.getX(), command.getY());
 						robot.mousePress(command.getButton());
 						break;
 					case MOUSE_RELEASE:
+//						robot.mouseMove(command.getX(), command.getY());
 						robot.mouseRelease(command.getButton());
 						break;
 					case MOUSE_WHEEL:
