@@ -74,11 +74,9 @@ public class Player implements Runnable {
 						robot.mouseMove(command.getX(), command.getY());
 						break;
 					case MOUSE_PRESS:
-//						robot.mouseMove(command.getX(), command.getY());
 						robot.mousePress(command.getButton());
 						break;
 					case MOUSE_RELEASE:
-//						robot.mouseMove(command.getX(), command.getY());
 						robot.mouseRelease(command.getButton());
 						break;
 					case MOUSE_WHEEL:
