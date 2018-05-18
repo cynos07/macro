@@ -26,7 +26,7 @@ public class Player implements Runnable {
 	private File file;
 	private int loop;
 	private int interval;
-	
+
 	private static boolean run = false;
 	private static KeyListener keyListener;
 
@@ -38,18 +38,17 @@ public class Player implements Runnable {
 
 	@Override
 	public void run() {
-		
+
 		run = true;
 		Gson gson = new Gson();
 		try {
 			Robot robot = new Robot();
-			
 
 			GlobalScreen.registerNativeHook();
 
 			keyListener = new KeyListener();
 			GlobalScreen.addNativeKeyListener(keyListener);
-			for(int i=loop; i>0; i--) {
+			for (int i = loop; i > 0 && run; i--) {
 				BufferedReader reader = new BufferedReader(new FileReader(file));
 				String input = reader.readLine();
 				while (input != null && run) {
@@ -59,14 +58,14 @@ public class Player implements Runnable {
 					switch (cmd) {
 					case KEY_PRESS:
 						int keyCode = command.getKeyCode();
-						if(keyCode == 157)
+						if (keyCode == 157)
 							keyCode = 524;
 						System.out.println(keyCode);
 						robot.keyPress(keyCode);
 						break;
 					case KEY_RELEASE:
 						int keyCode2 = command.getKeyCode();
-						if(keyCode2 == 157)
+						if (keyCode2 == 157)
 							keyCode2 = 524;
 						System.out.println(keyCode2);
 						robot.keyRelease(keyCode2);
@@ -90,7 +89,12 @@ public class Player implements Runnable {
 					input = reader.readLine();
 				}
 				reader.close();
-				robot.delay(interval);
+				for (int j = interval; j > 0 && run; j -= 50) {
+					if (j > 50)
+						robot.delay(50);
+					else
+						robot.delay(j);
+				}
 			}
 		} catch (AWTException e1) {
 			// TODO Auto-generated catch block
@@ -105,9 +109,9 @@ public class Player implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	public static void stop() {
 		try {
 			GlobalScreen.unregisterNativeHook();
@@ -118,7 +122,7 @@ public class Player implements Runnable {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static boolean isRun() {
 		return run;
 	}

@@ -47,7 +47,7 @@ public class MainUI extends Application {
 
 	public static void iconified(boolean isIconified) {
 		for(Stage stage : com.sun.javafx.stage.StageHelper.getStages()) {
-			System.out.println("stage.. changed to " + isIconified);
+			System.out.println("iconified changed to " + isIconified);
 			stage.setIconified(isIconified);
 		}
 	}
