@@ -11,7 +11,6 @@ public class MouseMotionListener implements NativeMouseMotionListener{
 
 	@Override
 	public void nativeMouseMoved(NativeMouseEvent nativeEvent) {
-		System.out.println(".");
 		Command command = new Command(Cmd.MOUSE_MOVE);
 		command.setX(nativeEvent.getX());
 		command.setY(nativeEvent.getY());
